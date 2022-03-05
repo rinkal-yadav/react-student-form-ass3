@@ -1,14 +1,21 @@
 import React, { Component } from 'react'
+import FormData from './FormData'
 
 export default class Employee extends Component {
-    state = {
+    constructor(props) {
+      super(props)
+    
+      this.state = {
         name: '',
         department: '',
         rating: '',
         header: " EMPLOYEE FEEDBACK FORM ",
         display: [],
         toggle: false
+         
+      }
     }
+    
 
     updateChange = (e) => {
         this.setState({
@@ -30,7 +37,7 @@ export default class Employee extends Component {
 
         this.setState({
             header: "EMPLOYEE FEEDBACK DATA",
-            toogle: true
+            toggle: true
         })
 
 
@@ -42,30 +49,19 @@ export default class Employee extends Component {
             department: '',
             rating: '',
             header: "EMPLOYEE FEEDBACK FORM",
-            toogle: false
+            toggle: false
         })
     }
 
     render() {
         return (
             <div>
-                <h1>{this.state.header}</h1> <br/> 
+                <h1>{this.state.header}</h1> <br/>
 
                 { 
-                    this.state.toogle ? 
-                    <> <div className='flex'>
-                            {
-                                this.state.display.map((val, index) =>
-                                    <div className='info' key={index}>
-                                        Name : {val.name} || Department : {val.department} || Rating : {val.rating}
-
-                                    </div>)
-
-                            }
-                            
-                        </div>
-
-                        <button onClick={this.backbtn} className='form-submit' >Go Back</button></>
+                    this.state.toggle ? 
+                    <> <FormData Data={this.state.display}/>
+                    <button onClick={this.backbtn} className='form-submit' >Go Back</button> </>
 
                         :
 
@@ -78,7 +74,7 @@ export default class Employee extends Component {
                                 <label user="name" className='form-label'>Rating : </label>
                                 <input required type="number" className='form-input' name="rating" id="rating" min={1} max={10} value={this.state.rating} onChange={this.updateChange} />   <br /><br />
                             </div>
-                            <button type="submit" className='form-submit'  >submit</button>
+                            <button type="submit" className='form-submit' > Submit </button>
                         </form>
 
 

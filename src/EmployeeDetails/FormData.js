@@ -1,12 +1,23 @@
 import React , { Component } from 'react'
 
 export default class FormData extends Component {
+    constructor(props) {
+      super(props)
+    
+      this.state = {
+         Data:this.props.Data
+      }
+    }
     render(){
+
         return(
                            
-                    <> <div className='flex'>
+                    <>
+                       { console.log(this.state.Data) }
+
+                     <div className='flex'>
                             {
-                                this.state.display.map((val, index) =>
+                                this.state.Data.map((val, index) =>
                                     <div className='info' key={index}>
                                         Name : {val.name} || Department : {val.department} || Rating : {val.rating}
 
@@ -16,7 +27,9 @@ export default class FormData extends Component {
                             
                         </div>
 
-                        <button onClick={this.backbtn} className='form-submit' >Go Back</button></>
+                        
+
+                        </>
            
         )
     }
